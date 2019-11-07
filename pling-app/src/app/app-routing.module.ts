@@ -5,9 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {
+  /*   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/register',
     pathMatch: 'full'
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }
+  } */
 ];
 
 @NgModule({
