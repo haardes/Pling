@@ -1,16 +1,21 @@
+const DEBUG_MODE = true;
+
 const express = require('express');
 const router = express.Router();
+const mysql = require('mysql');
 const User = require('../models/user');
 const Event = require('../models/event');
+const connection = mysql.createConnection({
+    host: '34.77.245.225',
+    user: 'root',
+    password: 'pling',
+    database: 'pling_storage',
+});
 
 router.get('/', (req, res) => {
     res.send("From api-route");
 });
 
-/**   / /\   |--\ |   / |--\ 
- *   / /--\  |--/ |  /  |--/
- *  / /    \ |    | /   |  \ 
- */
 router.post('/register', (req, res) => {
     // TODO: Sanitize user-input, check password containing correct values etc(normal password rules)
     // TODO: Check error-messages returned from INSERT, show "username already" etc.
@@ -49,6 +54,22 @@ router.post('/events', (req, res) => {
     });
 });
 
+// GET ALL EVENTS. ONLY AVAILABLE IN 'DEBUG MODE'
+router.get('/events', (req, res) => {
+    if (DEBUG_MODE) {
+        connection.query('SELECT * FROM events', (error, results, fields) => {
+            if (error) console.log(error);
+            else res.status(200).send(results);
+        });
+    }
+});
 
+router.get('/events/:userid', (req, res) => {
+    let userid = req.params.userid;
+    connection.query('SELECT * FROM events WHERE userid = ?', userid, (error, results, fields) => {
+        if (error) console.log(error);
+        else res.status(200).send(results);
+    });
+});
 
 module.exports = router;
