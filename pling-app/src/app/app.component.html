@@ -1,8 +1,12 @@
-<mat-toolbar>
-  <span [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Pling!</span>
-  <span [routerLink]="['/calendar']" routerLinkActive="router-link-active">Calendar</span>
-  <span [routerLink]="['/groups']" routerLinkActive="router-link-active">Groups</span>
-  <span class="fill-remaining-space"></span>
-  <span [routerLink]="['/profile']" routerLinkActive="router-link-active">Profile</span>
+<mat-toolbar color="primary" class="fixed-header">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/dashboard" routerLinkActive="active">Pling!</a>
+    <a mat-button routerLink="/calendar" routerLinkActive="active">Calendar</a>
+    <a mat-button routerLink="/groups" routerLinkActive="active">Groups</a>
+    <span class="fill-remaining-space"></span>
+    <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
+  </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<main>
+  <router-outlet style="margin-top: 80px;"></router-outlet>
+</main>

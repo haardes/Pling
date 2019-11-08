@@ -11,10 +11,9 @@ module.exports = class Event {
         }
     }
 
-    // TODO:
     save(callback) {
         let connection = mysql.createConnection({
-            host: '34.77.245.225',
+            socketPath: '/cloudsql/pling-258309:europe-west1:pling-database',
             user: 'root',
             password: 'pling',
             database: 'pling_storage',

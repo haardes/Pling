@@ -7,9 +7,17 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import {
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule
+} from '@angular/material';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -22,11 +30,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    FormsModule,
+    MatInputModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

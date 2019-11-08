@@ -9,7 +9,7 @@ module.exports = class User {
 
     save(callback) {
         let connection = mysql.createConnection({
-            host: '34.77.245.225',
+            socketPath: '/cloudsql/pling-258309:europe-west1:pling-database',
             user: 'root',
             password: 'pling',
             database: 'pling_storage',
@@ -19,6 +19,7 @@ module.exports = class User {
             if (err) callback(err, null);
             else {
                 this.userid = res.insertId;
+                console.log("User created");
                 callback(null, this.toJSON());
             }
         });
@@ -26,7 +27,7 @@ module.exports = class User {
 
     exists(callback) {
         let connection = mysql.createConnection({
-            host: '34.77.245.225',
+            socketPath: '/cloudsql/pling-258309:europe-west1:pling-database',
             user: 'root',
             password: 'pling',
             database: 'pling_storage',
