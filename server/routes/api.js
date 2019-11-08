@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const User = require('../models/user');
 const Event = require('../models/event');
 const connection = mysql.createConnection({
-    host: '34.77.245.225',
+    socketPath: '/cloudsql/pling-258309:europe-west1:pling-database',
     user: 'root',
     password: 'pling',
     database: 'pling_storage',

@@ -19,7 +19,6 @@ module.exports = class User {
             if (err) callback(err, null);
             else {
                 this.userid = res.insertId;
-                console.log("User created");
                 callback(null, this.toJSON());
             }
         });
@@ -35,7 +34,6 @@ module.exports = class User {
 
         connection.query('SELECT * FROM users WHERE username = ?', this.username, (err, res, fields) => {
             if (err) {
-                console.log(err);
                 callback(err, null);
             } else {
                 callback(null, res[0]);
