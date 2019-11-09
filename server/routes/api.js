@@ -1,6 +1,5 @@
-const DEBUG_MODE = true;
-
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const mysql = require('mysql');
 const User = require('../models/user');
@@ -23,7 +22,16 @@ router.post('/register', (req, res) => {
     let user = new User(userData);
     user.save((err, registeredUser) => {
         if (err) console.log(err);
-        else res.status(200).send(registeredUser);
+        else {
+            let payload = {
+                subject: registeredUser.userid
+            };
+            let token = jwt.sign(payload, 'secretKey');
+
+            res.status(200).send({
+                token
+            });
+        }
     });
 });
 
@@ -38,7 +46,14 @@ router.post('/login', (req, res) => {
             } else if (user.password !== userData.password) {
                 res.status(401).send("Incorrect password");
             } else {
-                res.status(200).send(user);
+                let payload = {
+                    subject: user.userid
+                };
+                let token = jwt.sign(payload, 'secretKey');
+
+                res.status(200).send({
+                    token
+                });
             }
         }
     });
@@ -52,16 +67,6 @@ router.post('/events', (req, res) => {
         if (err) console.log(err);
         else res.status(200).send(event);
     });
-});
-
-// GET ALL EVENTS. ONLY AVAILABLE IN 'DEBUG MODE'
-router.get('/events', (req, res) => {
-    if (DEBUG_MODE) {
-        connection.query('SELECT * FROM events', (error, results, fields) => {
-            if (error) console.log(error);
-            else res.status(200).send(results);
-        });
-    }
 });
 
 router.get('/events/:userid', (req, res) => {
