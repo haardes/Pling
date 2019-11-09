@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   private REGISTER_URL = 'https://pling-258309.appspot.com/api/register';
-  private LOGIN_URL =
+  private LOGIN_URL = 'https://pling-258309.appspot.com/api/login';
   constructor(private http: HttpClient) {}
 
   registerUser(user) {
