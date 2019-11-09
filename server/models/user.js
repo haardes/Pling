@@ -19,7 +19,7 @@ module.exports = class User {
             if (err) callback(err, null);
             else {
                 this.userid = res.insertId;
-                callback(null, this.toJSON());
+                callback(null, this);
             }
         });
     }

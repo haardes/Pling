@@ -8,11 +8,11 @@ const connection = mysql.createConnection({
     socketPath: '/cloudsql/pling-258309:europe-west1:pling-database',
     user: 'root',
     password: 'pling',
-    database: 'pling_storage',
+    database: 'pling_storage'
 });
 
 router.get('/', (req, res) => {
-    res.send("From api-route");
+    res.send('From api-route');
 });
 
 router.post('/register', (req, res) => {
@@ -29,7 +29,8 @@ router.post('/register', (req, res) => {
             let token = jwt.sign(payload, 'secretKey');
 
             res.status(200).send({
-                token
+                token,
+                payload
             });
         }
     });
@@ -42,9 +43,9 @@ router.post('/login', (req, res) => {
         if (err) console.log(err);
         else {
             if (!user) {
-                res.status(401).send("Username not found");
+                res.status(401).send('Username not found');
             } else if (user.password !== userData.password) {
-                res.status(401).send("Incorrect password");
+                res.status(401).send('Incorrect password');
             } else {
                 let payload = {
                     subject: user.userid
@@ -52,10 +53,18 @@ router.post('/login', (req, res) => {
                 let token = jwt.sign(payload, 'secretKey');
 
                 res.status(200).send({
-                    token
+                    token,
+                    payload
                 });
             }
         }
+    });
+});
+
+router.get('/events', (req, res) => {
+    connection.query('SELECT * FROM events', (error, results, fields) => {
+        if (error) console.log(error);
+        else res.status(200).send(results);
     });
 });
 
@@ -71,10 +80,14 @@ router.post('/events', (req, res) => {
 
 router.get('/events/:userid', (req, res) => {
     let userid = req.params.userid;
-    connection.query('SELECT * FROM events WHERE userid = ?', userid, (error, results, fields) => {
-        if (error) console.log(error);
-        else res.status(200).send(results);
-    });
+    connection.query(
+        'SELECT * FROM events WHERE userid = ?',
+        userid,
+        (error, results, fields) => {
+            if (error) console.log(error);
+            else res.status(200).send(results);
+        }
+    );
 });
 
 module.exports = router;
