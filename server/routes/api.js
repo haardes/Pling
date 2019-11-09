@@ -11,6 +11,25 @@ const connection = mysql.createConnection({
     database: 'pling_storage'
 });
 
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    let token = req.headers.authorization.split(' ')[1];
+    if (token === 'null') {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    let payload = jwt.verify(token, 'secretKey');
+    if (!payload) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    req.userid = payload.subject;
+    next();
+}
+
 router.get('/', (req, res) => {
     res.send('From api-route');
 });
@@ -61,7 +80,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.get('/events', (req, res) => {
+router.get('/events', verifyToken, (req, res) => {
     connection.query('SELECT * FROM events', (error, results, fields) => {
         if (error) console.log(error);
         else res.status(200).send(results);
