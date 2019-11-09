@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -9,11 +11,18 @@ import { EventService } from '../event.service';
 export class CalendarComponent implements OnInit {
   events = [];
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit() {
-    this.eventService
-      .getEvents()
-      .subscribe(res => (this.events = res), err => console.log(err));
+    this.eventService.getEvents().subscribe(
+      res => (this.events = res),
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.router.navigate(['/login']);
+          }
+        }
+      }
+    );
   }
 }
