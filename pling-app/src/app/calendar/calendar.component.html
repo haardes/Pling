@@ -1,0 +1,18 @@
+<mat-grid-list cols="3">
+  <mat-grid-tile *ngFor="let event of events">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{event.title}}</mat-card-title>
+        <mat-card-subtitle>{{event.start | date:'shortDate'}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{event.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent">Edit</button>
+        <button mat-raised-button color="accent">Share</button>
+        <button mat-raised-button color="warn">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

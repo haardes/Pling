@@ -15,16 +15,20 @@ import {
   MatButtonModule,
   MatCardModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule,
+  MatGridListModule
 } from '@angular/material';
 import { AuthService } from './auth.service';
+import { EventService } from './event.service';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +41,10 @@ import { AuthService } from './auth.service';
     MatIconModule,
     FormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

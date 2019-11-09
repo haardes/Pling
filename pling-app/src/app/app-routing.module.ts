@@ -3,16 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent
   },
   {
     path: 'login',
