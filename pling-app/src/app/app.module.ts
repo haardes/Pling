@@ -1,13 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './auth.service';
+import { EventService } from './event.service';
+import { CalendarComponent } from './calendar/calendar.component';
+import { PlingComponent } from './pling/pling.component';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {
   MatToolbarModule,
@@ -16,11 +20,11 @@ import {
   MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatGridListModule
+  MatGridListModule,
+  MatIconRegistry
 } from '@angular/material';
-import { AuthService } from './auth.service';
-import { EventService } from './event.service';
-import { CalendarComponent } from './calendar/calendar.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    CalendarComponent
+    CalendarComponent,
+    PlingComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,25 @@ import { CalendarComponent } from './calendar/calendar.component';
     HttpClientModule,
     MatGridListModule
   ],
-  providers: [AuthService, EventService],
+  providers: [
+    AuthService,
+    EventService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    matIconRegistry.addSvgIconSet(
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+    );
+  }
+}

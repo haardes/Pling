@@ -1,0 +1,15 @@
+.pling-icon {
+  width: 128px;
+  height: 128px;
+}
+
+.welcome-card {
+  margin: 16px auto;
+  width: fit-content;
+}
+
+.welcome-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
