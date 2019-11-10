@@ -6,10 +6,173 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  week = [
+    {
+      name: 'monday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'tuesday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'wednesday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'thursday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'friday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'saturday',
+      events: [
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        },
+        {
+          eventid: 1,
+          userid: 1,
+          title: 'Event title',
+          location: 'Event location',
+          description: 'Event description',
+          previousVersion: null,
+          start: '2019-11-15 00:00:00',
+          end: '2019-11-15 12:00:00'
+        }
+      ]
+    },
+    {
+      name: 'sunday',
+      events: []
+    }
+  ];
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

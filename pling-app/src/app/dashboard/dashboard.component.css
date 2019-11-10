@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+}
+
+.weekly-overview {
+  flex: 0 1 70%;
+  margin: 16px 16px;
+}
+
+.weekly-overview>.mat-divider {
+  border-top-color: grey;
+  border-top-width: 2px;
+}
+
+.scroll-container {
+  height: 500px;
+  overflow: auto;
+}
+
+.mat-divider {
+  border-top-color: grey;
+  border-top-width: 1px;
+}
+
+.notifications {
+  flex: 1 0 auto;
+  margin: 16px 16px;
+}
