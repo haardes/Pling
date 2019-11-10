@@ -30,6 +30,7 @@ import {
 } from '@angular/material';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -73,10 +74,16 @@ import { TokenInterceptorService } from './token-interceptor.service';
 export class AppModule {
   constructor(
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private authService: AuthService,
+    private router: Router
   ) {
     matIconRegistry.addSvgIconSet(
       domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
     );
+
+    if (authService.loggedIn()) {
+      router.navigate(['/dashboard']);
+    }
   }
 }

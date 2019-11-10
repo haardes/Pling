@@ -175,4 +175,9 @@ export class DashboardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  isToday(index: number): boolean {
+    const day = new Date().getDay() - 1;
+    return day === -1 ? index === 6 : index === day;
+  }
 }
