@@ -25,7 +25,8 @@ import {
   MatDividerModule,
   MatListModule,
   MatAccordion,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTreeModule
 } from '@angular/material';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
@@ -54,7 +55,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     MatGridListModule,
     MatDividerModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTreeModule
   ],
   providers: [
     AuthService,

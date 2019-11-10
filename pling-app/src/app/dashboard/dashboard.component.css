@@ -13,8 +13,12 @@
 }
 
 .scroll-container {
-  height: 700px;
+  height: 660px;
   overflow: auto;
+}
+
+.mat-expansion-panel .mat-card {
+  background-color: #7b1fa2;
 }
 
 .mat-divider {
@@ -25,4 +29,13 @@
 .notifications {
   flex: 1 0 auto;
   margin: 16px 16px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7b1fa2;
 }

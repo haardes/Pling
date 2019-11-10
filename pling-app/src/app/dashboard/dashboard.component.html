@@ -1,15 +1,31 @@
 <div class="weekly-overview" layout="column">
   <h1 class="mat-display-1">Welcome back Admin!</h1>
-  <h1 mat-headline>Here's an overview of the week:</h1>
-  <mat-divider></mat-divider>
+  <h1 mat-headline>Here's an overview for the rest of the week:</h1>
   <div class="scroll-container">
     <mat-accordion multi="true">
-      <mat-expansion-panel *ngFor="let day of week">
+      <mat-expansion-panel *ngFor="let day of week; let i = index" [expanded]="i === 0 ? true : false">
         <mat-expansion-panel-header>
-          {{day.name | titlecase}}
+          <mat-panel-title>
+            {{day.name | titlecase}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{day.events.length === 1 ? day.events.length + " event" : day.events.length + " events"}}
+          </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-card *ngFor="let event of day.events">
-        </mat-card>
+        <mat-grid-list cols="5">
+          <mat-grid-tile *ngFor="let event of day.events">
+            <mat-card color="primary">
+              <mat-card-header>
+                <mat-card-title>{{event.title}}</mat-card-title>
+                <mat-card-subtitle>{{event.start | date:'HH:mm'}} - {{event.end | date:'HH:mm'}}</mat-card-subtitle>
+                <mat-card-subtitle>{{event.location}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>{{event.description}}</p>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -21,12 +37,24 @@
   </mat-card-header>
 
   <mat-card-content>
-    <mat-list>
-      <mat-list-item>Item 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
+    //TODO: Add expanding tree for notifications
+    <!-- <mat-tree>
+      <mat-nested-tree-node>
+        Event invitations:
+        <mat-nested-tree-node></mat-nested-tree-node>
+        <mat-nested-tree-node></mat-nested-tree-node>
+      </mat-nested-tree-node>
+      <mat-nested-tree-node>
+        Group invitations:
+        <mat-nested-tree-node>You have been invited to join Magnus Jørs and 3 others in INFO283 Eksamensøving
+        </mat-nested-tree-node>
+      </mat-nested-tree-node>
+      <mat-nested-tree-node>
+        Group chat:
+        <mat-nested-tree-node>3 new messages in INFO212</mat-nested-tree-node>
+        <mat-nested-tree-node>6 new messages in Fagutvalget</mat-nested-tree-node>
+        <mat-nested-tree-node>1 new message in Tesla Bergen</mat-nested-tree-node>
+      </mat-nested-tree-node>
+    </mat-tree> -->
   </mat-card-content>
 </mat-card>
