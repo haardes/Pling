@@ -1,0 +1,30 @@
+.scroll-nav {
+  display: flex;
+}
+
+.scroll-nav-action {
+  align-self: center;
+}
+
+.scroll-container {
+  overflow: auto;
+}
+
+mat-divider {
+  border-top-width: 2px;
+  border-top-color: grey;
+}
+
+mat-card {
+  background-color: #9c27b0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9c27b0;
+  border-radius: 4px;
+}

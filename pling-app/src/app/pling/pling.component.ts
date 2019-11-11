@@ -8,10 +8,7 @@ import { MatIconRegistry } from '@angular/material';
   styleUrls: ['./pling.component.css']
 })
 export class PlingComponent implements OnInit {
-  constructor(
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
-  ) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'pling',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/pling-icon.svg')

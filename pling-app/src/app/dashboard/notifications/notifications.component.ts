@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    const notificationEl = document.querySelector('app-notifications') as HTMLElement;
+    const notifHeight =
+      window.innerHeight - notificationEl.getBoundingClientRect().top - 128;
+    notificationEl.style.height = `${notifHeight}px`;
   }
-
 }

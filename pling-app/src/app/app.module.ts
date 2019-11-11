@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatToolbarModule,
   MatFormFieldModule,
@@ -24,15 +24,20 @@ import {
   MatIconRegistry,
   MatDividerModule,
   MatListModule,
-  MatAccordion,
   MatExpansionModule,
-  MatTreeModule
+  MatTreeModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { Router } from '@angular/router';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { NotificationsComponent } from './dashboard/notifications/notifications.component';
+import { CreateComponent } from './events/create/create.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,8 @@ import { NotificationsComponent } from './dashboard/notifications/notifications.
     CalendarComponent,
     PlingComponent,
     OverviewComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +67,15 @@ import { NotificationsComponent } from './dashboard/notifications/notifications.
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
-    MatTreeModule
+    MatTreeModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    ReactiveFormsModule
   ],
+  entryComponents: [CreateComponent],
   providers: [
     AuthService,
     EventService,

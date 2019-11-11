@@ -9,19 +9,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  loading = true;
   events = [];
 
   constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit() {
     this.eventService.getEvents().subscribe(
-      res => (this.events = res),
+      res => {
+        this.loading = false;
+        this.events = res;
+      },
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.router.navigate(['/login']);
           }
         }
+
+        console.log(err);
       }
     );
   }

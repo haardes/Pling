@@ -2,59 +2,18 @@
   display: flex;
 }
 
-.weekly-overview {
+app-overview {
   flex: 0 1 70%;
-  margin: 16px 16px;
+  margin: 16px;
 }
 
-.weekly-overview>.mat-divider {
-  border-top-color: grey;
-  border-top-width: 2px;
-}
-
-.scroll-nav {
-  display: flex;
-  flex-direction: row;
-}
-
-.scroll-nav>button {
-  align-self: center;
-}
-
-.scroll-container {
-  overflow: auto;
-}
-
-.mat-expansion-panel .mat-card {
-  background-color: #7b1fa2;
-}
-
-.mat-divider {
-  border-top-color: grey;
-  border-top-width: 1px;
-}
-
-.notifications {
-  flex: 1 0 auto;
-  margin: 16px 16px;
+app-notifications {
+  flex-grow: 1;
+  margin: 16px;
 }
 
 .events-dashboard-add {
   position: absolute;
   bottom: 24px;
   right: 24px;
-}
-
-.fill-remaining-space {
-  flex: 1 1 auto;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #7b1fa2;
-  border-radius: 4px;
 }
