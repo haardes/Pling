@@ -12,6 +12,15 @@
   border-top-width: 2px;
 }
 
+.scroll-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.scroll-nav>button {
+  align-self: center;
+}
+
 .scroll-container {
   overflow: auto;
 }
@@ -28,6 +37,16 @@
 .notifications {
   flex: 1 0 auto;
   margin: 16px 16px;
+}
+
+.events-dashboard-add {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
 }
 
 ::-webkit-scrollbar {

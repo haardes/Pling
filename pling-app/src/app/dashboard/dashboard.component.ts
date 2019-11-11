@@ -175,8 +175,14 @@ export class DashboardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(document.querySelector('.scroll-container').getBoundingClientRect());
-    document.querySelector('.scroll-container').style.height = '100px';
+    const scrollEl = document.querySelector('.scroll-container') as HTMLElement;
+    const notificationEl = document.querySelector('.notifications') as HTMLElement;
+
+    const scrollHeight = window.innerHeight - scrollEl.getBoundingClientRect().top - 16;
+    scrollEl.style.height = `${scrollHeight}px`;
+
+    const notifHeight = window.innerHeight - notificationEl.getBoundingClientRect().top - 128;
+    notificationEl.style.height = `${notifHeight}px`;
   }
 
   isToday(index: number): boolean {

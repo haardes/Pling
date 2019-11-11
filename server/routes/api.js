@@ -48,8 +48,7 @@ router.post('/register', (req, res) => {
             let token = jwt.sign(payload, 'secretKey');
 
             res.status(200).send({
-                token,
-                payload
+                token
             });
         }
     });
@@ -72,8 +71,7 @@ router.post('/login', (req, res) => {
                 let token = jwt.sign(payload, 'secretKey');
 
                 res.status(200).send({
-                    token,
-                    payload
+                    token
                 });
             }
         }

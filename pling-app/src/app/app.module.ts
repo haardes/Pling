@@ -31,6 +31,8 @@ import {
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { Router } from '@angular/router';
+import { OverviewComponent } from './dashboard/overview/overview.component';
+import { NotificationsComponent } from './dashboard/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { Router } from '@angular/router';
     LoginComponent,
     DashboardComponent,
     CalendarComponent,
-    PlingComponent
+    PlingComponent,
+    OverviewComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
