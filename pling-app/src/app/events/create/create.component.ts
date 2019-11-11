@@ -62,7 +62,7 @@ export class CreateComponent implements OnInit {
     }
 
     data.start.setHours(data.startTime.split(':')[0], data.startTime.split(':')[1]);
-    return;
+    return data;
   }
 
   getErrorMessage() {
