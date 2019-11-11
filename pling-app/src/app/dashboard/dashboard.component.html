@@ -1,28 +1,38 @@
-<div class="weekly-overview" layout="column">
+<div class="weekly-overview">
   <h1 class="mat-display-1">Welcome back Admin!</h1>
   <mat-divider></mat-divider>
   <h1 mat-headline>Here's an overview for the rest of the week:</h1>
   <div class="scroll-container">
     <mat-accordion multi="true">
-      <mat-expansion-panel *ngFor="let day of week; let i = index" [expanded]="isToday(i)">
+      <mat-expansion-panel
+        *ngFor="let day of week; let i = index"
+        [expanded]="isToday(i)"
+      >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{day.name | titlecase}}
+            {{ day.name | titlecase }}
           </mat-panel-title>
           <mat-panel-description>
-            {{day.events.length === 1 ? day.events.length + " event" : day.events.length + " events"}}
+            {{
+              day.events.length === 1
+                ? day.events.length + ' event'
+                : day.events.length + ' events'
+            }}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-grid-list cols="5">
           <mat-grid-tile *ngFor="let event of day.events">
             <mat-card color="primary">
               <mat-card-header>
-                <mat-card-title>{{event.title}}</mat-card-title>
-                <mat-card-subtitle>{{event.start | date:'HH:mm'}} - {{event.end | date:'HH:mm'}}</mat-card-subtitle>
-                <mat-card-subtitle>{{event.location}}</mat-card-subtitle>
+                <mat-card-title>{{ event.title }}</mat-card-title>
+                <mat-card-subtitle
+                  >{{ event.start | date: 'HH:mm' }} -
+                  {{ event.end | date: 'HH:mm' }}</mat-card-subtitle
+                >
+                <mat-card-subtitle>{{ event.location }}</mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p>{{event.description}}</p>
+                <p>{{ event.description }}</p>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>

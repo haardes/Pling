@@ -174,7 +174,10 @@ export class DashboardComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(document.querySelector('.scroll-container').getBoundingClientRect());
+    document.querySelector('.scroll-container').style.height = '100px';
+  }
 
   isToday(index: number): boolean {
     const day = new Date().getDay() - 1;
