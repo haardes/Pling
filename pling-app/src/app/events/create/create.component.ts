@@ -29,7 +29,6 @@ export class CreateComponent implements OnInit {
   };
 
   eventData = {
-    userid: '',
     title: '',
     description: '',
     location: '',
@@ -51,18 +50,37 @@ export class CreateComponent implements OnInit {
   }
 
   createEvent() {
-    const preparedData = this.prepareData(this.eventData);
-    /* this.eventService.createEvent(this.eventData); */
+    this.eventService.createEvent(this.prepareData(this.eventData)).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.log(err)
+    );
     this.dialogRef.close();
   }
 
   prepareData(data) {
-    if (data.endDate) {
+    data.start.setHours(data.startTime.split(':')[0], data.startTime.split(':')[1]);
+
+    const preparedData: any = {
+      title: data.title,
+      description: data.description,
+      location: data.location,
+      start: data.start
+        .toISOString()
+        .slice(0, 19)
+        .replace('T', ' ')
+    };
+
+    if (data.end !== '') {
       data.end.setHours(data.endTime.split(':')[0], data.endTime.split(':')[1]);
+      preparedData.end = data.end
+        .toISOString()
+        .slice(0, 19)
+        .replace('T', ' ');
     }
 
-    data.start.setHours(data.startTime.split(':')[0], data.startTime.split(':')[1]);
-    return data;
+    return preparedData;
   }
 
   getErrorMessage() {

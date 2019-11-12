@@ -79,32 +79,21 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/events', verifyToken, (req, res) => {
-    connection.query('SELECT * FROM events', (error, results, fields) => {
+    connection.query('SELECT * FROM events WHERE userid = ?', req.userid, (error, results, fields) => {
         if (error) console.log(error);
         else res.status(200).send(results);
     });
 });
 
-router.post('/events', (req, res) => {
+router.post('/events', verifyToken, (req, res) => {
     // TODO: Sanitize user-input
     let eventData = req.body;
+    eventData.userid = req.userid;
     let event = new Event(eventData);
     event.save((err, event) => {
         if (err) console.log(err);
         else res.status(200).send(event);
     });
-});
-
-router.get('/events/:userid', (req, res) => {
-    let userid = req.params.userid;
-    connection.query(
-        'SELECT * FROM events WHERE userid = ?',
-        userid,
-        (error, results, fields) => {
-            if (error) console.log(error);
-            else res.status(200).send(results);
-        }
-    );
 });
 
 module.exports = router;

@@ -6,21 +6,12 @@ import { RegisterComponent } from './register/register.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { PlingComponent } from './pling/pling.component';
 import { AuthGuard } from './auth.guard';
+import { DashboardResolverService } from './dashboard-resolver.service';
 
 const routes: Routes = [
   {
     path: '',
     component: PlingComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'calendar',
-    component: CalendarComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -29,6 +20,19 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      events: DashboardResolverService
+    }
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

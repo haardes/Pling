@@ -8,7 +8,7 @@
   <button mat-raised-button class="scroll-nav-action" (click)="accordion.closeAll()" color="warn">Close all</button>
 </div>
 
-<div class="scroll-container">
+<div class="scroll-container" [hidden]="loading">
   <mat-accordion #accordion="matAccordion" multi="true">
     <mat-expansion-panel *ngFor="let day of week; let i = index" [expanded]="isToday(i)">
       <mat-expansion-panel-header>
@@ -24,7 +24,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list cols="5">
-        <mat-grid-tile *ngFor="let event of day.events">
+        <mat-grid-tile *ngFor="let event of week.events">
           <mat-card color="primary">
             <mat-card-header>
               <mat-card-title>{{ event.title }}</mat-card-title>

@@ -17,8 +17,8 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.eventService.getEvents().subscribe(
       res => {
-        this.loading = false;
         this.events = res;
+        this.loading = false;
       },
       err => {
         if (err instanceof HttpErrorResponse) {

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/event.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -6,179 +9,97 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  loading = true;
+  events = [];
   week = [
     {
-      name: 'monday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Monday',
+      events: []
     },
     {
-      name: 'tuesday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Tuesday',
+      events: []
     },
     {
-      name: 'wednesday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Wednesday',
+      events: []
     },
     {
-      name: 'thursday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Thursday',
+      events: []
     },
     {
-      name: 'friday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Friday',
+      events: []
     },
     {
-      name: 'saturday',
-      events: [
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        },
-        {
-          eventid: 1,
-          userid: 1,
-          title: 'Event title',
-          location: 'Event location',
-          description: 'Event description',
-          previousVersion: null,
-          start: '2019-11-15 00:00:00',
-          end: '2019-11-15 12:00:00'
-        }
-      ]
+      name: 'Saturday',
+      events: []
     },
     {
-      name: 'sunday',
+      name: 'Sunday',
       events: []
     }
   ];
-  constructor() {}
+
+  constructor(
+    private eventService: EventService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     const scrollEl = document.querySelector('.scroll-container') as HTMLElement;
 
     const scrollHeight = window.innerHeight - scrollEl.getBoundingClientRect().top - 16;
     scrollEl.style.height = `${scrollHeight}px`;
+
+    this.route.data.subscribe(
+      res => {
+        this.events = res.events;
+        console.log(this.events);
+        this.fillWeekEvents();
+        this.loading = false;
+      },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.router.navigate(['/login']);
+          }
+        }
+
+        console.log(err);
+      }
+    );
+  }
+
+  fillWeekEvents() {
+    this.events
+      .filter(event => this.isSameWeek(event))
+      .forEach(event => {
+        const start = new Date(event.start);
+        const dayNr = start.getDay() - 1 === -1 ? 6 : start.getDay() - 1;
+        this.week[dayNr].events.push(event);
+      });
+  }
+
+  isSameWeek(event) {
+    const today = new Date();
+    const dayNr = today.getDay() - 1 === -1 ? 6 : today.getDay() - 1;
+    const monday = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - dayNr
+    );
+    const sunday = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + (7 - dayNr)
+    );
+
+    const start = new Date(event.start);
+
+    return start > monday && start < sunday;
   }
 
   isToday(index: number): boolean {

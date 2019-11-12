@@ -5,16 +5,17 @@
   <mat-dialog-content class="form-container">
     <mat-form-field>
       <input matInput placeholder="Title" autocomplete="off" [formControl]="titleControl" [(ngModel)]="eventData.title"
-        required>
+        spellcheck="false" required>
       <mat-error *ngIf="titleControl.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="Description" autocomplete="off" [(ngModel)]="eventData.description"></textarea>
+      <textarea matInput placeholder="Description" autocomplete="off" [(ngModel)]="eventData.description"
+        spellcheck="false"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Location" autocomplete="off" [(ngModel)]="eventData.location">
+      <input matInput placeholder="Location" autocomplete="off" [(ngModel)]="eventData.location" spellcheck="false">
     </mat-form-field>
 
     <span>
