@@ -1,76 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/event.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  selector: "app-overview",
+  templateUrl: "./overview.component.html",
+  styleUrls: ["./overview.component.css"]
 })
 export class OverviewComponent implements OnInit {
-  loading = true;
-  events = [];
+  @Input() events = [];
   week = [
     {
-      name: 'Monday',
+      name: "Monday",
       events: []
     },
     {
-      name: 'Tuesday',
+      name: "Tuesday",
       events: []
     },
     {
-      name: 'Wednesday',
+      name: "Wednesday",
       events: []
     },
     {
-      name: 'Thursday',
+      name: "Thursday",
       events: []
     },
     {
-      name: 'Friday',
+      name: "Friday",
       events: []
     },
     {
-      name: 'Saturday',
+      name: "Saturday",
       events: []
     },
     {
-      name: 'Sunday',
+      name: "Sunday",
       events: []
     }
   ];
 
-  constructor(
-    private eventService: EventService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    const scrollEl = document.querySelector('.scroll-container') as HTMLElement;
+    this.fillWeekEvents();
 
-    const scrollHeight = window.innerHeight - scrollEl.getBoundingClientRect().top - 16;
+    const scrollEl = document.querySelector(".scroll-container") as HTMLElement;
+
+    const scrollHeight =
+      window.innerHeight - scrollEl.getBoundingClientRect().top - 16;
     scrollEl.style.height = `${scrollHeight}px`;
-
-    this.route.data.subscribe(
-      res => {
-        this.events = res.events;
-        console.log(this.events);
-        this.fillWeekEvents();
-        this.loading = false;
-      },
-      err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            this.router.navigate(['/login']);
-          }
-        }
-
-        console.log(err);
-      }
-    );
   }
 
   fillWeekEvents() {

@@ -1,18 +1,18 @@
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule, DomSanitizer } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AuthService } from './auth.service';
-import { EventService } from './event.service';
-import { CalendarComponent } from './calendar/calendar.component';
-import { PlingComponent } from './pling/pling.component';
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from "./app-routing.module";
+import { AuthService } from "./auth.service";
+import { EventService } from "./event.service";
+import { CalendarComponent } from "./calendar/calendar.component";
+import { PlingComponent } from "./pling/pling.component";
+import { AppComponent } from "./app.component";
+import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatToolbarModule,
   MatFormFieldModule,
@@ -30,14 +30,16 @@ import {
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule
-} from '@angular/material';
-import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service';
-import { Router } from '@angular/router';
-import { OverviewComponent } from './dashboard/overview/overview.component';
-import { NotificationsComponent } from './dashboard/notifications/notifications.component';
-import { CreateComponent } from './events/create/create.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+} from "@angular/material";
+import { AuthGuard } from "./auth.guard";
+import { TokenInterceptorService } from "./token-interceptor.service";
+import { Router } from "@angular/router";
+import { OverviewComponent } from "./dashboard/overview/overview.component";
+import { NotificationsComponent } from "./dashboard/notifications/notifications.component";
+import { CreateComponent } from "./events/create/create.component";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { DashboardResolverService } from "./dashboard-resolver.service";
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     PlingComponent,
     OverviewComponent,
     NotificationsComponent,
-    CreateComponent
+    CreateComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     AuthService,
     EventService,
     AuthGuard,
+    DashboardResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
@@ -96,11 +100,11 @@ export class AppModule {
     private router: Router
   ) {
     matIconRegistry.addSvgIconSet(
-      domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+      domSanitizer.bypassSecurityTrustResourceUrl("./assets/mdi.svg")
     );
 
     if (authService.loggedIn()) {
-      router.navigate(['/dashboard']);
+      router.navigate(["/dashboard"]);
     }
   }
 }

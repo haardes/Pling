@@ -4,32 +4,51 @@
 <div class="scroll-nav">
   <h1 mat-headline>Here's an overview for the rest of the week:</h1>
   <span class="fill-remaining-space"></span>
-  <button mat-raised-button class="scroll-nav-action" (click)="accordion.openAll()" color="accent">Open all</button>
-  <button mat-raised-button class="scroll-nav-action" (click)="accordion.closeAll()" color="warn">Close all</button>
+  <button
+    mat-raised-button
+    class="scroll-nav-action"
+    (click)="accordion.openAll()"
+    color="accent"
+  >
+    Open all
+  </button>
+  <button
+    mat-raised-button
+    class="scroll-nav-action"
+    (click)="accordion.closeAll()"
+    color="warn"
+  >
+    Close all
+  </button>
 </div>
 
-<div class="scroll-container" [hidden]="loading">
+<div class="scroll-container">
   <mat-accordion #accordion="matAccordion" multi="true">
-    <mat-expansion-panel *ngFor="let day of week; let i = index" [expanded]="isToday(i)">
+    <mat-expansion-panel
+      *ngFor="let day of week; let i = index"
+      [expanded]="isToday(i)"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ day.name | titlecase }}
         </mat-panel-title>
         <mat-panel-description>
           {{
-              day.events.length === 1
-                ? day.events.length + ' event'
-                : day.events.length + ' events'
-            }}
+            day.events.length === 1
+              ? day.events.length + " event"
+              : day.events.length + " events"
+          }}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-grid-list cols="5">
-        <mat-grid-tile *ngFor="let event of week.events">
+        <mat-grid-tile *ngFor="let event of day.events">
           <mat-card color="primary">
             <mat-card-header>
               <mat-card-title>{{ event.title }}</mat-card-title>
-              <mat-card-subtitle>{{ event.start | date: 'HH:mm' }} -
-                {{ event.end | date: 'HH:mm' }}</mat-card-subtitle>
+              <mat-card-subtitle
+                >{{ event.start | date: "HH:mm" }} -
+                {{ event.end | date: "HH:mm" }}</mat-card-subtitle
+              >
               <mat-card-subtitle>{{ event.location }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
@@ -41,8 +60,6 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-
-
 
 <!-- <div class="weekly-overview">
   <h1 class="mat-display-1">Welcome back Admin!</h1>
