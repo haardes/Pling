@@ -7,6 +7,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { PlingComponent } from './pling/pling.component';
 import { AuthGuard } from './auth.guard';
 import { DashboardResolverService } from './dashboard-resolver.service';
+import { GroupsComponent } from './groups/groups.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'groups',
+    component: GroupsComponent,
     canActivate: [AuthGuard]
   }
 ];

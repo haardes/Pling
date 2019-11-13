@@ -1,18 +1,4 @@
-<mat-toolbar color="primary" class="fixed-header">
-  <mat-toolbar-row *ngIf="authService.loggedIn()">
-    <a mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-    <a mat-button routerLink="/calendar" routerLinkActive="active">Calendar</a>
-    <a mat-button routerLink="/groups" routerLinkActive="active">Groups</a>
-    <span class="fill-remaining-space"></span>
-    <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
-  </mat-toolbar-row>
-  <mat-toolbar-row *ngIf="!authService.loggedIn()">
-    <a mat-button routerLink="/" routerLinkActive="active">Pling!</a>
-    <span class="fill-remaining-space"></span>
-    <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="/register">Register</a>
-  </mat-toolbar-row>
-</mat-toolbar>
+<app-navigation></app-navigation>
 <main>
   <router-outlet style="margin-top: 80px;"></router-outlet>
 </main>
