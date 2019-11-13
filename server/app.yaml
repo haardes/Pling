@@ -1,1 +1,7 @@
 runtime: nodejs10
+handlers:
+  - url: /
+    static_files: dist/pling-app/index.html
+    upload: dist/pling-app/index.html
+  - url: /
+    static_dir: dist
