@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent implements OnInit {
   loading = true;
@@ -31,4 +31,19 @@ export class CalendarComponent implements OnInit {
       }
     );
   }
+/*
+  shareEvent(event) {
+    const shareTo = prompt('Please enter a valid userid');
+    const data = {
+      userid: shareTo,
+      eventdata: event,
+    };
+
+    this.eventService.shareEvent(data).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.log(err)
+    );
+  } */
 }

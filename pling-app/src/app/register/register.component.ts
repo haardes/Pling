@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
   userData = {
     username: '',
-    password: ''
+    password: '',
   };
   passwordRepeat = '';
 
@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
+          localStorage.setItem('user', res.user);
           this.router.navigate(['/dashboard']);
         },
         err => console.log(err)

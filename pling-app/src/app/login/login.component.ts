@@ -5,12 +5,12 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   userData = {
     username: '',
-    password: ''
+    password: '',
   };
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/dashboard']);
       },
       err => console.log(err)

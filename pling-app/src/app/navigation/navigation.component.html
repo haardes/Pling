@@ -1,11 +1,10 @@
 <mat-toolbar color="primary" class="fixed-header">
   <mat-toolbar-row *ngIf="!!authService.loggedIn()">
-    <a mat-button routerLink="/dashboard" routerLinkActive="active"
-      >Dashboard</a
-    >
+    <a mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
     <a mat-button routerLink="/calendar" routerLinkActive="active">Calendar</a>
     <a mat-button routerLink="/groups" routerLinkActive="active">Groups</a>
     <span class="fill-remaining-space"></span>
+    <a mat-button routerLink="/" (click)="logOut()">Logout</a>
     <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
   </mat-toolbar-row>
 

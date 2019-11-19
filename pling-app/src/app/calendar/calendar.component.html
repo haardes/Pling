@@ -3,16 +3,16 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ event.title }}</mat-card-title>
-        <mat-card-subtitle>{{
-          event.start | date: "shortDate"
-        }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ event.start | date: 'shortDate' }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>{{ event.description }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="accent">Edit</button>
-        <button mat-raised-button color="accent">Share</button>
+        <button mat-raised-button color="accent">
+          Share
+        </button>
         <span class="fill-remaining-space"></span>
         <button mat-raised-button color="warn">Delete</button>
       </mat-card-actions>

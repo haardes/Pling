@@ -1,43 +1,41 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  styleUrls: ['./overview.component.css'],
 })
 export class OverviewComponent implements OnInit {
   @Input() events = [];
   week = [
     {
       name: 'Monday',
-      events: []
+      events: [],
     },
     {
       name: 'Tuesday',
-      events: []
+      events: [],
     },
     {
       name: 'Wednesday',
-      events: []
+      events: [],
     },
     {
       name: 'Thursday',
-      events: []
+      events: [],
     },
     {
       name: 'Friday',
-      events: []
+      events: [],
     },
     {
       name: 'Saturday',
-      events: []
+      events: [],
     },
     {
       name: 'Sunday',
-      events: []
-    }
+      events: [],
+    },
   ];
 
   constructor() {}
@@ -47,8 +45,7 @@ export class OverviewComponent implements OnInit {
 
     const scrollEl = document.querySelector('.scroll-container') as HTMLElement;
 
-    const scrollHeight =
-      window.innerHeight - scrollEl.getBoundingClientRect().top - 24;
+    const scrollHeight = window.innerHeight - scrollEl.getBoundingClientRect().top - 24;
     scrollEl.style.height = `${scrollHeight}px`;
   }
 

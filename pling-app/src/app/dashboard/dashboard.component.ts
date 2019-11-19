@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material";
-import { CreateComponent } from "../events/create/create.component";
-import { Router, ActivatedRoute } from "@angular/router";
-import { HttpErrorResponse } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { CreateComponent } from '../events/create/create.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.css"]
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   events = [];
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(["/login"]);
+            this.router.navigate(['/login']);
           }
         }
 
