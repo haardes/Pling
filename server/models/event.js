@@ -23,7 +23,15 @@ module.exports = class Event {
             if (err) callback(err, null);
             else {
                 this.eventid = res.insertId;
-                callback(null, JSON.stringify(this));
+                connection.query('INSERT INTO junction_users_events SET ?', {
+                    userid: this.userid,
+                    eventid: res.insertId
+                }, (err, res, fields) => {
+                    if (err) callback(err, null);
+                    else {
+                        callback(null, JSON.stringify(this));
+                    }
+                });
             }
         });
     }
